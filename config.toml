@@ -1,0 +1,44 @@
+# The URL the site will be built for
+base_url = "https://meow.uz"
+
+theme = "duckquill"
+title = "Meow"
+generate_feeds = true
+feed_filenames = ["rss.xml", "atom.xml"]
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+author = "msftyago"
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+#highlighting = false
+
+[extra]
+# Put all your custom variables here
+emoji_favicon = "🐈‍⬛"
+default_theme = "dark"
+accent_color = "#a00101"
+accent_color_dark = "#a00101"
+
+[extra.nav]
+show_feed = true
+show_theme_switcher = true
+links = [
+#	{ name = "Links", menu = [
+#		{ url = "@/blog/_index.md", name = "blog" },
+#		{ url = "https://t.me/msftyago", name = "contact" }
+#	] },
+	{ url = "@/blog/_index.md", name = "Blog"},
+	{ url = "@/research/_index.md", name = "Research"}, #FIXME: Create [research/_index.md]
+	{ url = "https://github.com/msftyago", name = "GitHub" }
+]
+
+[extra.footer]
+show_copyright = true
+#show_source = true
+show_powered_by = true
+copyright = "© **Kamol Khakimov**"
