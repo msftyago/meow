@@ -1,15 +1,10 @@
-# The URL the site will be built for
 base_url = "https://meow.uz"
-
 theme = "duckquill"
 title = "Meow"
 generate_feeds = true
 feed_filenames = ["rss.xml", "atom.xml"]
-# Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
 author = "msftyago"
-
-# Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
 
 [markdown]
@@ -18,11 +13,14 @@ build_search_index = false
 #highlighting = false
 
 [extra]
-# Put all your custom variables here
+styles = [
+  "_crt.scss"
+]
+
 emoji_favicon = "🐈‍⬛"
 default_theme = "dark"
-accent_color = "#a00101"
-accent_color_dark = "#a00101"
+#accent_color = "#4a1d00"
+#accent_color_dark = "#4a1d00"
 
 [extra.nav]
 show_feed = true
@@ -33,7 +31,7 @@ links = [
 #		{ url = "https://t.me/msftyago", name = "contact" }
 #	] },
 	{ url = "@/blog/_index.md", name = "Blog"},
-	{ url = "@/research/_index.md", name = "Research"}, #FIXME: Create [research/_index.md]
+	{ url = "@/research/_index.md", name = "Research"},
 	{ url = "https://github.com/msftyago", name = "GitHub" }
 ]
 
