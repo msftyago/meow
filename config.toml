@@ -6,25 +6,38 @@ feed_filenames = ["rss.xml", "atom.xml"]
 compile_sass = true
 author = "msftyago"
 build_search_index = false
+taxonomies = [{ name = "tags", feed = true }]
 
 [markdown]
+smart_punctuation = true
+bottom_footnotes = true
+github_alerts = true
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 #highlighting = false
+
+[markdown.highlighting]
+light_theme = "github-light" #BROWSE: Markdown Reading Themes
+dark_theme = "github-dark"
+
+[search]
+index_format = "fuse_json"
 
 [extra]
 styles = [
   "_crt.scss"
 ]
+toc_inline = true
+toc_sidebar = true
 
-emoji_favicon = "🐈‍⬛"
 default_theme = "dark"
-#accent_color = "#4a1d00"
-#accent_color_dark = "#4a1d00"
+accent_color = "#999167"
+accent_color_dark = "#999167"
 
 [extra.nav]
 show_feed = true
 show_theme_switcher = true
+show_repo = true
 links = [
 #	{ name = "Links", menu = [
 #		{ url = "@/blog/_index.md", name = "blog" },
@@ -40,3 +53,6 @@ show_copyright = true
 #show_source = true
 show_powered_by = true
 copyright = "© **Kamol Khakimov**"
+
+[extra.debug]
+no_styles = false
