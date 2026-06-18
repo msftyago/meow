@@ -7,10 +7,6 @@ description = "Self sufficiency 101"
   
 [taxonomies]
 tags = ["Self-improvement", "Sufficiency", "Cooking"]
-
-[extra]
-toc = true
-toc_inline = true
 +++
 
 blank (for now)
