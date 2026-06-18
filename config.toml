@@ -24,6 +24,7 @@ dark_theme = "github-dark"
 index_format = "fuse_json"
 
 [extra]
+source_url = "https://github.com/msftyago/meow"
 styles = [
   "_crt.scss"
 ]
@@ -43,9 +44,9 @@ links = [
 #		{ url = "@/blog/_index.md", name = "blog" },
 #		{ url = "https://t.me/msftyago", name = "contact" }
 #	] },
-	{ url = "@/blog/_index.md", name = "Blog"},
-	{ url = "@/research/_index.md", name = "Research"},
-	{ url = "https://github.com/msftyago", name = "GitHub" }
+	{ url = "@/blog/_index.md", name = "blog"},
+	{ url = "@/research/_index.md", name = "research"},
+	{ url = "https://github.com/msftyago", name = "github" }
 ]
 
 [extra.footer]
