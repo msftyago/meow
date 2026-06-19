@@ -1,0 +1,7 @@
+* Todos
+
+- [ ] favicon
+- [ ] coming soon page
+- [ ] emacs page [route]
+- [ ] search functionality
+
