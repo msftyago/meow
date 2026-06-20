@@ -18,8 +18,6 @@ disclaimer = "incomplete"
 # Preface
 Society becoming too dependent on...
 
-{{ image(url="./ellenjpg.jpg", alt="This is for test", no_hover=true) }}
-
 # Benefits
 Just think about it, how wasteful and insufficient it is to order/eat out. When you can eat healthy stuff, and for dirt cheap! 
 
