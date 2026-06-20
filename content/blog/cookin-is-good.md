@@ -4,7 +4,7 @@ authors = ['Kamol Khakimov']
 date = 2026-05-18
 updated = "2026-05-08"
 description = "Hitting the gym? Wanna eat healthy? Perhaps you want to learn something new!"
-  
+
 [taxonomies]
 tags = ["Health", "Sufficiency", "Cooking"]
 
@@ -17,6 +17,8 @@ disclaimer = "incomplete"
 
 # Preface
 Society becoming too dependent on...
+
+{{ image(url="./ellenjpg.jpg", alt="This is for test", no_hover=true) }}
 
 # Benefits
 Just think about it, how wasteful and insufficient it is to order/eat out. When you can eat healthy stuff, and for dirt cheap! 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title>Meow - Sufficiency</title>
+      <link>https://meow.uz</link>
+      <description></description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://meow.uz/tags/sufficiency/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Mon, 18 May 2026 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Cookin is good, here’s why..</title>
+          <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+          <author>Kamol Khakimov</author>
+          <link>https://meow.uz/blog/cookin-is-good/</link>
+          <guid>https://meow.uz/blog/cookin-is-good/</guid>
+          <description xml:base="https://meow.uz/blog/cookin-is-good/">&lt;figure&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;meow.uz&#x2F;blog&#x2F;cookin-is-good&#x2F;ellenjpg.webp&quot; alt=&quot;Ellen Page&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;figcaption&gt;The Office where Stanley works, it has yellow floor and beige walls&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h1 id=&quot;preface&quot;&gt;Preface&lt;&#x2F;h1&gt;
+&lt;p&gt;Society becoming too dependent on…&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;benefits&quot;&gt;Benefits&lt;&#x2F;h1&gt;
+&lt;p&gt;Just think about it, how wasteful and insufficient it is to order&#x2F;eat out. When you can eat healthy stuff, and for dirt cheap!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;how-i-do-it&quot;&gt;How i do it&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;let-s-get-our-hands-oily&quot;&gt;Let’s get our hands oily&lt;&#x2F;h2&gt;
+</description>
+      </item>
+    </channel>
+</rss>
