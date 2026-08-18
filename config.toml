@@ -40,13 +40,10 @@ show_feed = true
 show_theme_switcher = true
 show_repo = true
 links = [
-	{ url = "@/blog/_index.md", name = "blog"},
-	{ url = "@/research/_index.md", name = "research"},
-		{ name = "links", menu = [
-		{ url = "https://t.me/msftyago", name = "t.me" },
-		{ url = "https://github.com/msftyago", name = "github" }
-	] },
-]
+	# { url = "@/blog/_index.md", name = "blog"},
+	{ url = "@/posts/_index.md", name = "read"},
+        { url = "https://github.com/msftyago", name = "github" }
+	]
 
 [extra.footer]
 show_copyright = true
