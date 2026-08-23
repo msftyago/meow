@@ -40,7 +40,7 @@ show_feed = true
 show_theme_switcher = true
 show_repo = true
 links = [
-	# { url = "@/blog/_index.md", name = "blog"},
+      	{ url = "@/blog/_index.md", name = "blog"},
 	{ url = "@/posts/_index.md", name = "read"},
         { url = "https://github.com/msftyago", name = "github" }
 	]
