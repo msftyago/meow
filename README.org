@@ -1,8 +1,0 @@
-* Todos
-
-- [X] favicon
-- [ ] coming soon page
-- [ ] emacs page [route]
-- [X] search functionality
-- [ ] =treats= page for short tweets
-
