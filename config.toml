@@ -1,0 +1,55 @@
+base_url = "https://meow.uz"
+theme = "duckquill"
+title = "Meow"
+generate_feeds = true
+feed_filenames = ["rss.xml", "atom.xml"]
+compile_sass = true
+author = "msftyago"
+build_search_index = true
+taxonomies = [{ name = "tags", feed = true }]
+
+[markdown]
+smart_punctuation = true
+bottom_footnotes = true
+github_alerts = true
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+#highlighting = false
+
+[markdown.highlighting]
+light_theme = "github-light" #BROWSE: Markdown Reading Themes
+dark_theme = "github-dark"
+
+[search]
+index_format = "fuse_json"
+
+[extra]
+source_url = "https://github.com/msftyago/meow"
+styles = [
+  "_crt.scss"
+]
+toc_inline = true
+toc_sidebar = true
+
+default_theme = "dark"
+accent_color = "#999167"
+accent_color_dark = "#999167"
+
+[extra.nav]
+show_feed = true
+show_theme_switcher = true
+show_repo = true
+links = [
+      	{ url = "@/blog/_index.md", name = "blog"},
+	{ url = "@/posts/_index.md", name = "read"},
+        { url = "https://github.com/msftyago", name = "github" }
+	]
+
+[extra.footer]
+show_copyright = true
+#show_source = true
+show_powered_by = true
+copyright = "© **Kamol Khakimov**"
+
+[extra.debug]
+no_styles = false
