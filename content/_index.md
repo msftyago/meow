@@ -4,8 +4,6 @@ title = "Home"
 +++
 
 <br> <br>
-<br> <br>
-<br> <br>
 
 # MEOW
 {% crt() %} 
